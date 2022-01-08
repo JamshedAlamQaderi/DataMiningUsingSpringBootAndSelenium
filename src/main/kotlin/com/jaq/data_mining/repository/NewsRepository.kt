@@ -1,4 +1,8 @@
 package com.jaq.data_mining.repository
 
-class NewsRepository {
+import com.jaq.data_mining.data.NewsEntity
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface NewsRepository : JpaRepository<NewsEntity, Long> {
+
 }
