@@ -17,6 +17,11 @@ const moduleRoute = {
       component: () =>
         import(/*webpackChunkName: "CreateNews"*/ "./views/create-news.vue"),
     },
+    {
+      path: "read-news/:newsId",
+      component: () =>
+        import(/*webpackChunkName: "ReadNews" */ "./views/read-news.vue"),
+    },
   ],
 };
 

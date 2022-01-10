@@ -51,9 +51,16 @@
           id="newsContent"
         />
       </div>
-      <div class="mt-4 w-full flex justify-end">
+      <div class="mt-4 w-full flex justify-end gap-2">
+        <button
+          class="rounded-full uppercase bg-gray-400 px-4 text-white shadow-lg"
+          @click="goBackToNewsDashboard"
+        >
+          Go Back
+        </button>
         <button
           class="
+            shadow-lg
             uppercase
             bg-green-500
             rounded-full
@@ -77,6 +84,8 @@
 </template>
 
 <script>
+import router from "../../router";
+import apiHelper from "../api-helper";
 export default {
   data() {
     return {
@@ -89,10 +98,23 @@ export default {
   },
   methods: {
     submitNewsData() {
-      console.log(this.newsData);
-      this.newsData.newsUrl = ''
-      this.newsData.newsTitle = ''
-      this.newsData.newsContent = ''
+      apiHelper
+        .createNews(
+          this.newsData.newsTitle,
+          this.newsData.newsUrl,
+          this.newsData.newsContent
+        )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Created news: ", data);
+        })
+        .catch((e) => e);
+      this.newsData.newsUrl = "";
+      this.newsData.newsTitle = "";
+      this.newsData.newsContent = "";
+    },
+    goBackToNewsDashboard() {
+      router.push("/news-data/news-dashboard");
     },
   },
 };

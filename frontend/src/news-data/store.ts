@@ -1,5 +1,7 @@
 export default {
-  state: {},
+  state: {
+    newsData:[]
+  },
   mutations: {},
   actions: {},
   modules: {},
